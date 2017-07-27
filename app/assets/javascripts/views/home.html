@@ -1,0 +1,68 @@
+<div class="jumbotron text-center">
+  <div class="container-fluid">
+    <h1 ng-if="user">Welcome, {{user.username}}</h1>
+    <h1 ng-if="!user">Welcome to WeatherCast</h1>
+    <h2>Enter a location:</h2>
+    <input type="text" googlelocation ng-model="autocomplete" class="form-control" />
+    <br>
+    <div class="row">
+      <div class="col-md-7">
+        <map center="[{{lat}}, {{long}}]" zoom="15" style="height:300px;min-width:200px;margin:0 auto;">
+          <marker position="[{{lat}}, {{long}}]">
+        </map>
+      </div>
+      <div class="thumbnail col-md-5 now">
+        <span ng-if="lat && long">
+          <h4>{{address}}</h4>
+          <skycon icon="weather.currently.icon"></skycon>
+          <h2>{{weather.currently.summary}}</h2>
+          <h4>Temperature: {{weather.currently.temperature | number:0}}<span ng-if="weather.currently.temperature">&#8457;</span></h4>
+        <h4> Dew Point: {{weather.currently.dewPoint | number:0}}<span ng-if="weather.currently.dewPoint">&deg;</span></h4>
+        <h4> Humidity: <span ng-if="weather.currently.humidity">{{weather.currently.humidity * 100 | number:0 }}%</span></h4>
+        <h4> Wind: <span ng-if="weather.currently.windSpeed">  {{weather.currently.windSpeed | number:0}} mph</span></h4>
+        </span>
+        <span ng-if="!lat && !long">
+            <h2> Please enter a location to see info here!</h2>
+          </span>
+      </div>
+    </div>
+
+    <div class="thumbnail col-md-12 thisweek" ng-if="lat && long">
+      <h2>This weeks forecast:</h2>
+      <h4>{{weather.daily.summary}}</h4>
+      <skycon icon="weather.daily.icon" size="128"></skycon>
+    </div>
+
+    <ul class="col-md-12" ng-if="lat && long">
+      <h2>6 Day Forecast:</h2>
+      <li class="thumbnail col-md-2 sixday" ng-repeat="daily in weather.daily.data | limitTo:7" ng-if="$index > 0">
+        <h4><b>{{ daily.time * 1000  | date:'MMMM d, EEEE' }}</b></h4>
+        <skycon icon="daily.icon"></skycon>
+        <h4>{{ daily.summary }}</h4><b> Temp Min:</b>
+        <span>{{ daily.temperatureMin| number:0}}&#8457;</span>
+        <br> <b>Temp Max:</b>
+        <span>{{ daily.temperatureMax | number:0}}&#8457;</span>
+        <br><b> Humidity:</b>
+        <span>{{ daily.humidity * 100 | number:0}}%</span>
+        <br> <b>Wind:</b>
+        <span>{{ daily.windSpeed | number:0}} mph</span>
+        <br>
+      </li>
+    </ul>
+
+    <div ng-controller="LineCtrl" class="col-md-12" ng-if="lat && long">
+      <h2> Temperature on this day last year (24h): </h2>
+      <h3> {{dateLastYear * 1000 | date: "EEEE, MMMM d, y"}} </h3>
+      <canvas id="line" class="chart chart-line"  chart-data="temperatureData" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride">
+      </canvas>
+      <h2> Humidity on this day last year (24h): </h2>
+      <h3> {{dateLastYear * 1000 | date: "EEEE, MMMM d, y"}} </h3>
+      <canvas id="line" class="chart chart-line" chart-data="humidityData" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride">
+      </canvas>
+      <h2> Wind Speed on this day last year (24h): </h2>
+      <h3> {{dateLastYear * 1000 | date: "EEEE, MMMM d, y"}} </h3>
+      <canvas id="line" class="chart chart-line" chart-data="windData" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride">
+      </canvas>
+    </div>
+  </div>
+</div>

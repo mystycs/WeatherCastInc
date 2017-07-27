@@ -1,0 +1,12 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" ui-sref="home">WeatherCast App</a>
+  </div>
+  <ul class="nav navbar-nav">
+    <li ng-hide="signedIn()"><a ui-sref="login">Login</a></li>
+    <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
+    <li ng-show="signedIn()"><a ng-click="logout()" style="cursor: pointer;">Log Out</a></li>
+    <li ng-show="signedIn()"><a ui-sref="history">Search History</a></li>
+  </ul>
+  <p class="navbar-text navbar-right darksky" style="margin-right: 15px;"> <b><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></b></p>
+</nav>

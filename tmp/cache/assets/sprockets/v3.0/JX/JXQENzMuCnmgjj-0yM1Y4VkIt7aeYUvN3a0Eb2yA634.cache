@@ -1,0 +1,19 @@
+{:uriI"†file://app/assets/javascripts/views/history.html?type=text/ng-html&id=b70cf93908d0dc54e8e6bc43a6353ce4e4d29f001388a27c9903f341f5bacf92:ET:load_pathI"app/assets/javascripts;T:filenameI".app/assets/javascripts/views/history.html;T:	nameI"views/history;T:logical_pathI"views/history.html;T:content_typeI"text/ng-html;T:sourceI"B<div class="jumbotron text-center col-xs-12">
+  <ul class="col-md-12">
+    <h2>Search History:</h2><br>
+    <li class="thumbnail col-md-6 " ng-repeat="location in history">
+      <h4>Address:</h4>
+      <h5>{{ location.address }}</h5>
+      <h4>Date Searched:</h4>
+      <h5>{{ location.created_at | date:'M/d/yyyy h:mm a' }}</h5>
+      <map center="[{{location.lat}}, {{location.long}}]" scrollwheel="false" zoom="15" style="height:300px; min-width:200px; margin:0 auto;">
+        <marker position="[{{location.lat}}, {{location.long}}]">
+      </map>
+    </li>
+  </ul>
+</div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"<file-digest://app/assets/javascripts/views/history.html;TT:charsetI"
+utf-8;F:digest"%)apz’Ø<h)zI¬>ôU­aà(_vøþG¸ª:lengthiB:dependencies_digest"%÷“Ž^<Ä#ó©eJ¼É¾/ÈM¼’ØìÝ—÷ÛdÙyA:idI"Eb70cf93908d0dc54e8e6bc43a6353ce4e4d29f001388a27c9903f341f5bacf92;F:
+mtimel+›ácY

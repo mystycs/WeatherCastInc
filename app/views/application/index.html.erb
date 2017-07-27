@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WeatherCast Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApaDcPacwEcTV2csmK_TVub4W5vldZr3E&libraries=places&v=3"></script>
+  </head>
+  <body ng-app="WeatherCastApp">
+    <nav-bar></nav-bar>
+    <ui-view></ui-view>
+  </body>
+</html>
